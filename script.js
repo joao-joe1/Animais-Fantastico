@@ -16,8 +16,6 @@ function initTab() {
         })
     })
 }
-initTab();
-
 function initAccordion() {
 
     const accordionList = document.querySelectorAll('.js-accordion dt')
@@ -33,4 +31,36 @@ function initAccordion() {
         item.addEventListener('click', ativaLista)
     })
 }
+function initScrollSuave() {
+
+    const linkInternos = document.querySelectorAll('.js-menu a[href^="#"]')
+
+    function scrollSuave(event) {
+        event.preventDefault()
+        const href = event.currentTarget.getAttribute('href');
+        const section = document.querySelector(href)
+        console.log(section)
+
+
+        //Outra forma de tornar scroll suave...
+        // const topo = section.offsetTop;
+        // window.scrollTo({
+        //     top: topo,
+        //     behavior: 'smooth',
+        // });
+
+        //Alternativa para Chrome e Firefox
+        // section.scrollIntoView({
+        //     behavior: 'smooth',
+        //     block: 'start',
+        // });
+    }
+
+    linkInternos.forEach((links) => {
+        links.addEventListener('click', scrollSuave)
+    });
+}
+
+initScrollSuave();
 initAccordion();
+initTab();
